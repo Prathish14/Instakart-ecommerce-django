@@ -4,7 +4,7 @@
 
 ## Description
 
-Instakart is an online ecommerce site developed using HTML, CSS, JavaScript, Bootstrap on the frontend, and Python with Django on the backend. It utilizes Redis for caching, MySQL for the database, and integrates Razorpay as the payment gateway.
+Instakart, an online ecommerce platform, is dedicated to delivering a seamless shopping journey by integrating Razorpay for secure transactions, aiming to redefine online shopping convenience through prioritized seamless payment experiences and a user-friendly design.
 
 ### Components Used:
 - Frontend:
