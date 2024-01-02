@@ -1,0 +1,215 @@
+{% include 'navbar1.html' %}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+<style>
+  .jumbo1{
+      margin-top: 55px;
+      margin-left: 350px;
+      margin-right: 350px;
+      margin-bottom: 50px;
+
+  }
+
+  a{
+    color: aliceblue;
+  }
+
+</style>
+
+
+
+
+{% if messages %}
+
+  {% for message in messages %}
+
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>{{message}}</strong>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      ><span aria-hidden="true">&times;</span></button>
+    </div>
+  
+
+  {% endfor %}
+
+  {% endif %}
+
+  <div class="jumbotron text-left jumbo1">
+    <h4 class="display-5 text-center">Contact Us</h4>
+
+    <form method="post" autocomplete="off">
+
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="exampleInputname1" class="form-label">Full Name </label>
+        <input type="text" class="form-control" id ="exampleInputname1" name="name" aria-describedby="emailHelp" required>
+      </div>
+
+      <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email  </label>
+          <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" required>
+        </div>
+
+      <div class="mb-3">
+        <label for="exampleInputSubject" class="form-label">Subject</label>
+        <input type="text" class="form-control" name="subject" id="exampleInputSubject" required>
+      </div>
+      
+      <div class="mb-3">
+          <label for="exampleInputdesc" class="form-label">Eloborate your query </label>
+          <textarea class="form-control" name="desc" id="exampleInputdesc" required></textarea>
+        </div>
+      <button type="submit" class="btn btn-primary" name="contact123">Submit</button>
+    </form>
+  
+    </div>
+
+    <div class="jumbotron text-left jumbo1">
+      <h4 class="display-5 text-center">Join our Newsletter</h4>
+      <br>
+      <form method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="form-outline w-60 d-flex">
+        <input type="email" class="form-control" name="email" required> <input type="submit" class="btn btn-primary ml-4" name="newsletter1" value="Subscribe">
+      </div>
+      </form>
+      </div>
+
+    <footer class="bg-body-tertiary text-center">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a
+          data-mdb-ripple-init
+            class="btn text-white btn-floating m-1"
+            style="background-color: #3b5998;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+    
+          <!-- Twitter -->
+          <a
+            data-mdb-ripple-init
+            class="btn text-white btn-floating m-1"
+            style="background-color: #55acee;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-twitter"></i
+          ></a>
+    
+          <!-- Google -->
+          <a
+            data-mdb-ripple-init
+            class="btn text-white btn-floating m-1"
+            style="background-color: #dd4b39;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-google"></i
+          ></a>
+    
+          <!-- Instagram -->
+          <a
+            data-mdb-ripple-init
+            class="btn text-white btn-floating m-1"
+            style="background-color: #ac2bac;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-instagram"></i
+          ></a>
+    
+          <!-- Linkedin -->
+          <a
+            data-mdb-ripple-init
+            class="btn text-white btn-floating m-1"
+            style="background-color: #0082ca;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <!-- Github -->
+          <a
+            data-mdb-ripple-init
+            class="btn text-white btn-floating m-1"
+            style="background-color: #333333;"
+            href="#!"
+            role="button"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 Copyright:
+        <a class="text-body" href="https://instakart.tech/">instakart</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+
+
+<!--<div class="container mt-4 mb-4">
+
+    <h1 class="text-center"><I>Contact Us</I></h1>
+
+<div class="class row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        
+        <form method="post" autocomplete="off">
+
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="exampleInputname1" class="form-label">Full Name </label>
+              <input type="text" class="form-control" id ="exampleInputname1" name="name" aria-describedby="emailHelp" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email  </label>
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" required>
+              </div>
+
+            <div class="mb-3">
+              <label for="exampleInputSubject" class="form-label">Subject</label>
+              <input type="text" class="form-control" name="subject" id="exampleInputSubject" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="exampleInputdesc" class="form-label">Eloborate your query </label>
+                <textarea class="form-control" name="desc" id="exampleInputdesc" required></textarea>
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+
+
+
+    </div>
+    <div class="col-md-3"></div>
+</div>
+</div>-->
+
+
+

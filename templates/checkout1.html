@@ -1,0 +1,149 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load static %}
+
+<style>
+    .navbar {
+        height: 100px !important; /*i assume your navbar size 100px*/
+        background-color: #080809;
+        color: white;
+    }
+    .logo{
+        height: 40px;
+
+    }
+    .navbar-brand{
+        padding-left: 40px;
+    }
+
+    .nav-item{
+        align-items: right;
+    }
+    .list{
+        padding-right: 10px;
+        align-items: center;
+    }
+
+    a{
+        color: white;
+    }
+    .jumbo1{
+        margin-top: 55px;
+        margin-left: 400px;
+        margin-right: 400px;
+        margin-bottom: 50px;
+
+    }
+
+    .btn1{
+        margin-top: 10px;  
+
+    }
+    .btn2{
+        margin-top: 10px;
+        float: right;
+
+    }
+</style>
+
+{% include 'navbar1.html' %}
+
+<div class="jumbotron text-left jumbo1">
+    <h4 class="display-8 text-center">Step 1 - Review Your Cart Items</h4>
+    <br>
+    <ul class="list-group" id="items">
+
+                    
+    </ul>
+    <br>
+    <p>Your Cart Total Is <b>Rs. <span id="totalprice"></span> <span id="amount"></span></b>.</p>
+<br>
+<a href="{% url 'home1' %}"><button type="button" class="btn btn-primary btn-lg btn1">< Back</button></a>
+
+{% if True %}
+<a href="{% url 'address1' %}"><button type="submit" class="btn btn-primary btn-lg btn2">Next > </button></a>
+{% endif %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+ integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+ crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+
+<script>
+    if (localStorage.getItem('cart') == null) {
+       var cart = {};
+    } else {
+       cart = JSON.parse(localStorage.getItem('cart'));
+    }
+    console.log(cart);
+    
+    var sum = 0;
+    var totalPrice = 0;
+    if ($.isEmptyObject(cart)) {
+        //if object is empty
+        mystr = `<p>Your cart is empty, please add some items to your cart before checking out!</p>`;
+        $('#items').append(mystr);
+    } else {
+        let tableContent = ''; // Initialize an empty string to store table rows
+    
+        let rowNum = 1; // Counter for row numbers
+        for (item in cart) {
+            let name = cart[item][1];
+            let qty = cart[item][0];
+            let itemPrice = cart[item][2];
+    
+            sum = sum + qty;
+            totalPrice = totalPrice + qty * itemPrice;
+    
+            // Append table row HTML to the tableContent variable
+            tableContent += `<tr>
+                                <th scope="row">${rowNum}</th>
+                                <td>${name}</td>
+                                <td>${qty}</td>
+                                <td>${itemPrice}</td>
+                            </tr>`;
+    
+            rowNum++; // Increment row number
+        }
+    
+        // Construct the table HTML with the dynamic rows
+        let tableHTML = `<table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tableContent} <!-- Insert dynamically generated table rows here -->
+                            </tbody>
+                        </table>`;
+    
+        // Append the table HTML to the #items element
+        $('#items').append(tableHTML);
+    }
+document.getElementById('totalprice').innerHTML = totalPrice;
+
+if (totalPrice === 0) {
+    // If totalPrice is 0, disable the Next button
+    document.querySelector('.btn2').setAttribute('disabled', 'true');
+} else {
+    // If totalPrice is not 0, enable the Next button
+    document.querySelector('.btn2').removeAttribute('disabled');
+}
+
+
+$('#itemsJson').val(JSON.stringify(cart));    
+
+var test = `${totalPrice}`;
+document.getElementById("amt").value = test;
+</script>

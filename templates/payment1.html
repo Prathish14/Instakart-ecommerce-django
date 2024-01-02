@@ -1,0 +1,153 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load static %}
+
+<style>
+    .navbar {
+        height: 100px !important; /*i assume your navbar size 100px*/
+        background-color: #080809;
+        color: white;
+    }
+    .logo{
+        height: 40px;
+
+    }
+    .navbar-brand{
+        padding-left: 40px;
+    }
+
+    .nav-item{
+        align-items: right;
+    }
+    .list{
+        padding-right: 10px;
+        align-items: center;
+    }
+
+    a{
+        color: white;
+    }
+    .jumbo1{
+        margin-top: 55px;
+        margin-left: 400px;
+        margin-right: 400px;
+        margin-bottom: 50px;
+
+    }
+
+    .btn1{
+        margin-top: 10px;  
+
+    }
+    .btn2{
+        margin-top: 10px;
+        float: right;
+        
+
+    }
+</style>
+
+{% include 'navbar1.html' %}
+
+<div class="jumbotron text-left jumbo1">
+    <h4 class="display-8 text-center">Step 3 - Complete Your Payment</h4>
+    <br>
+
+    <p>Total ammount need to be paid :<B>{{razorpay_amount}}</B> Rs.</p>
+
+
+    <p>Payment Gateway: <B>Razorpay</B></p>
+
+<a href="{% url 'address1' %}"><button type="submit" class="btn btn-primary btn-lg btn1"> < Back </button></a>
+<button type="submit" class="btn btn-primary btn-lg btn2" id="pay-btn"> Make a Payment </button>
+
+</div>
+
+<!-- Razorpay's Javascript code. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+	var options = {
+	
+	// Enter the Key ID generated from the Dashboard
+	key: "{{ razorpay_merchant_key }}", 
+	
+	// Amount is in currency subunits.
+	// Default currency is INR. Hence, 
+	// 50000 refers to 50000 paise
+	amount: "{{ razorpay_amount }}", 
+	currency: "{{ currency }}",
+	
+	// Your/store name.
+	name: "instakart", 
+	image: "https://instakart-obj.s3.ap-south-1.amazonaws.com/instakart-logo.png",
+
+	prefill: { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        name: "{{cust_name}}", //your customer's name
+        email: "{{email}}",
+        contact: "{{contact}}" //Provide the customer's phone number for better conversion rates 
+    },
+	
+	// Pass the `id` obtained in the response of Step 1
+	order_id: "{{ razorpay_order_id }}", 
+	callback_url: "{{ callback_url }}",
+
+	config: {
+		display: {
+		  blocks: {
+			banks: {
+			  name: 'All payment methods',
+			  instruments: [
+				{
+				  method: 'upi'
+				},
+				{
+				  method: 'card'
+				},
+				{
+					method: 'wallet'
+				},
+				{
+					method: 'netbanking'
+				},
+				{
+					method:'emi'
+				},
+			  ],
+			},
+		  },
+		  sequence: ['block.banks'],
+		  preferences: {
+			show_default_blocks: false,
+		  },
+		},
+	  },
+	
+	  "handler": function (response) {
+		alert(response.razorpay_payment_id);
+	  },
+
+	  "modal": {
+		"ondismiss": function () {
+		  if (confirm("Are you sure, you want to close the form?")) {
+			txt = "You pressed OK!";
+			console.log("Checkout form closed by the user");
+		  } else {
+			txt = "You pressed Cancel!";
+			console.log("Complete the Payment")
+		  }
+		}
+	  }
+	};
+	
+	// initialise razorpay with the options.
+	var rzp1 = new Razorpay(options);
+	
+	// add event listener to the payment button.
+	document.getElementById("pay-btn").onclick = function (e) {
+	rzp1.open();
+	e.preventDefault();
+	};
+</script>
+

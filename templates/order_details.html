@@ -1,0 +1,185 @@
+{% include 'navbar1.html' %}
+
+<style>
+    
+    .jumbo1{
+        margin-top: 55px;
+        margin-left: 350px;
+        margin-right: 350px;
+        margin-bottom: 50px;
+  
+    }
+
+    body{
+        background:#eee;
+    }
+    .card {
+        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: 1rem;
+    }
+    .text-reset {
+        --bs-text-opacity: 1;
+        color: inherit!important;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
+</style>
+
+
+<div class="container-fluid">
+
+    <div class="container">
+      <!-- Title -->
+      <div class="d-flex justify-content-between align-items-center py-3">
+        <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #{{order1.id}} 
+          
+          {% if update1.payment_status == "success" %}
+                <span class="badge rounded-pill bg-info">SHIPPING</span>
+                {% else %}
+                <span class="badge bg-danger rounded-pill">FAILED</span>
+          {% endif %}
+
+      </div>
+    
+      <!-- Main content -->
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Details -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="mb-3 d-flex justify-content-between">
+                <div>
+                  <h4 class="display-8 text-center">Order Details</h4>
+                </div>
+                <div class="d-flex">
+                  <div class="dropdown">
+                    <button class="btn btn-link p-0 text-muted" type="button" data-bs-toggle="dropdown">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   {% for key,value in dict_items.items %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    {% for v in value %}
+                    <td>{{v}}</td>
+                    {% endfor %}
+                  </tr>
+
+                  {% endfor %}
+                 
+                  
+                </tbody>
+            </table>
+
+            <hr>
+
+            <p><B>Total:</B> {{order1.amount}} Rs.</p>
+                
+            </div>
+          </div>
+          <!-- Payment -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4 class="display-10 ">Payment Details</h4>
+                  <hr>
+                  <p><B>Payment Gateway :</B> Razorpay</p>
+                  <p><B>Updated Order Id : </B> {{update1.updated_order_id}}</p>
+                  <p><B>Payment Id : </B> {{update1.payment_id}}</p>
+
+                {% if update1.payment_status == "success" %}
+
+                 <p><B>Total : </B> {{order1.amount}} <span class="badge bg-success rounded-pill">PAID</span></p>
+
+                 {% else %}
+
+                 <p><B>Total : </B> {{order1.amount}} <span class="badge bg-danger rounded-pill">UNPAID</span></p>
+
+                {% endif %}
+                </div>
+                <div class="col-lg-6">
+                  <!--<h2 class="h6">Order Update</h2>
+                  <address>
+                    <strong>John Doe</strong><br>
+                    1355 Market St, Suite 900<br>
+                    San Francisco, CA 94103<br>
+                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                  </address> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Customer Notes -->
+          <div class="card mb-4">
+            <div class="card-body">
+
+              <h3 class="h6">Order Update</h3>
+              <hr>
+
+              {% if update1.payment_status == "success" %}
+              <p><B>Order Status :</B> {{update1.update_desc}} </p>
+              {% else %}
+              <p><B>Order Status : </B> Order Not Placed </p>
+              {% endif %}
+
+              {% if update1.delivered == False %}
+              <p><B>Delivery Status :</B> Still Not Delivered </p>
+              {% else %}
+
+              <p><B>Delivery Status : </B> Order Delivered Successfully </p>
+
+              {% endif %}
+
+              {% if update1.payment_status == "failure" %}
+              <p><B>Reason For Failure : </B> Payment Failed </p>
+              {% endif %}
+              
+            </div>
+          </div>
+          <div class="card mb-4">
+            <!-- Shipping information -->
+            <div class="card-body">
+              <h3 class="h6">Shipping Information</h3>
+              <strong>Ecom Express</strong>
+              <hr>
+              <h3 class="h6">Address</h3>
+              <address>
+                <strong>{{order1.name}}</strong><br>
+                {{order1.address1}}<br>
+                {{order1.city}},{{order1.state}},{{order1.zip_code}}<br>
+                <abbr title="Phone">P:</abbr> {{order1.phone}}
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>

@@ -1,0 +1,50 @@
+<!-- ======= Header ======= -->
+
+{% load static %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="{% url 'home1' %}"><img src="{% static 'img/instakart-logo.png' %}" rel="icon"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'home1' %}">Home</a></li>
+          <!--<li><a class="nav-link scrollto px-3" href="#about">Blog</a></li>-->
+          <li><a class="nav-link scrollto" href="{% url 'about1' %}">About</a></li>
+
+
+          {% if request.user.is_authenticated %}
+
+          
+          
+          <li><a class="nav-link scrollto " href="{% url 'checkout1' %}">Checkout</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'profile1' %}">My Profile</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'signout1' %}">Sign Out</a></li>
+
+          {% endif %}
+      
+
+          {% if request.user.is_authenticated == False %}
+
+    
+          <li><a class="nav-link scrollto" href="{% url 'signin1' %}">Sign In</a></li>
+
+          {% endif %}
+        
+
+          <button type="button" class="nav-link scrollto bg-danger p-3 m-2 text-white" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true">
+            <i class="fa-solid fa-cart-shopping"></i> Cart(<span id="cart">0</span>)
+          </button>
+
+          <li><a class="nav-link scrollto" href="{% url 'contact1' %}"><button type="button" class="btn btn-dark"><i class="fa-solid fa-phone"></i> Contact Us</button></a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

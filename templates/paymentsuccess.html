@@ -1,0 +1,33 @@
+{% include 'navbar1.html' %}
+
+<style>
+    .jumbo1{
+        margin-top: 55px;
+        margin-left: 350px;
+        margin-right: 350px;
+        margin-bottom: 50px;
+
+    }
+
+    a{
+        color: white;
+    }
+
+</style>
+
+<div class="jumbotron text-left jumbo1">
+    <h4 class="display-5 text-center">Payment Details <span class="badge bg-success">Success</span> </h4>
+<hr>
+
+<h6 class="display-6 text-center">Congratulations, Your order has been Placed successfully</h6>
+<br>
+<p><B>Updated Order id :</B> {{order_id}}</p>
+<p><B>Payment id: </B>{{payment_id}}</p>
+<span>Keep this information for your future reference</span>
+
+<div>
+    <br>
+<a href="{% url 'home1' %}"><button type="button" class="btn btn-primary px-3 mr-2">Home</button></a>
+<a href="{% url 'profile1' %}"><button type="button" class="btn btn-primary ml-2">My Profile</button></a>
+</div>
+</div>

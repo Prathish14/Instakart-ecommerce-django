@@ -1,0 +1,219 @@
+{% include 'navbar1.html' %}
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load static %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<style>
+  a{
+    color:white;
+  }
+
+  .site1{
+    color: blue;
+  }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col">
+
+  {% if messages %}
+
+  {% for message in messages %}
+
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>{{message}}</strong>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      ><span aria-hidden="true">&times;</span></button>
+    </div>
+  
+
+  {% endfor %}
+
+  {% endif %}
+
+          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <h4 class="display-8 text-center">My Profile</h4>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+
+              {% if profile1.image %}
+              <img src={{profile1.image.url}} alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              {% else %}
+              <img src="" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+              {% endif %}
+
+              {% if profile1.name %}
+              <h5 class="my-3">{{profile1.name}}</h5>
+              {% endif %}
+              <div class="d-flex justify-content-center mb-2">
+
+                <a href="{% url 'edit1' %}"><button type="button" class="btn btn-primary btn1 mr-2">Edit Profile</button></a>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <h4 class="display-8 text-center">Social Media</h4>
+                </li>
+
+                {% if profile1.website %}
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fa-solid fa-globe"></i>
+                  <p class="mb-0"><a class="site1" href="{{profile1.website}}">{{profile1.website}}</a></p>
+                </li>
+                {% endif %}
+
+                {% if profile1.facebook %}
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fa-brands fa-facebook"></i>
+                  <p class="mb-0"><a class="site1" href="{{profile1.facebook}}">{{profile1.facebook}}</a></p>
+                </li>
+                {% endif %}
+
+                {% if profile1.twitter %}
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fa-brands fa-twitter"></i>
+                  <p class="mb-0"><a class="site1" href="{{profile1.twitter}}">{{profile1.twitter}}</a></p>
+                </li>
+                {% endif %}
+
+                {% if profile1.linkedin %}
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fa-brands fa-linkedin"></i>
+                  <p class="mb-0"><a class="site1" href="{{profile1.linkedin}}">{{profile1.linkedin}}</a></p>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  {% if profile1.name %}
+                  <p class="text-muted mb-0">{{profile1.name}}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  {% if profile1.email %}
+                  <p class="text-muted mb-0">{{profile1.email}}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  {% if profile1.phone %}
+                  <p class="text-muted mb-0">{{profile1.phone}}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  {% if profile1.address %}
+                  <p class="text-muted mb-0">{{profile1.address}}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                  <h4 class="display-8 text-center">Order Summary</h4>
+                  </p>
+                  
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Amount </th>
+                        <th scope="col">View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for item in order1 %}
+                      <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{item.id}}</td>
+                        <td>{{item.amount}}</td>
+                        <td><a class="site1" href="{% url 'ord_det1' item.id %}"> view </a> </td>
+                      </tr>
+                      {% endfor %}
+
+                    </tbody>
+                  </table>
+
+                  <div class="pagination h-100 d-flex align-items-center justify-content-center">
+                    <span class="step-links">
+                        {% if order1.has_previous %}
+                        <a href="?page=1"><button type="button" class="btn btn-primary">&laquo; first</button></a>
+                        <a href="?page={{ order1.previous_page_number }}"> <button type="button" class="btn btn-primary ">previous</button></a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Page {{ order1.number }} of {{ order1.paginator.num_pages }}.
+                        </span>
+                
+                        {% if order1.has_next %}
+                            <a href="?page={{ order1.next_page_number }}"><button type="button" class="btn btn-primary">next</button></a>
+                            <a href="?page={{ order1.paginator.num_pages }}"><button type="button" class="btn btn-primary">last &raquo;</button></a>
+                        {% endif %}
+                    </span>
+                </div>
+                  
+                </div>
+              </div>
+            </div>
+    </div>
+  </section>

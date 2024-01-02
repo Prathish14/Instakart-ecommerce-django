@@ -1,0 +1,55 @@
+{% include 'navbar1.html' %}
+
+{% load cache %}
+
+{% cache 2592000 about1 %}
+
+<style>
+    .jumbo1{
+        margin-top: 55px;
+        margin-left: 350px;
+        margin-right: 350px;
+        margin-bottom: 50px;
+
+    }
+
+</style>
+
+<div class="jumbotron text-left jumbo1">
+    <h4 class="display-5 text-center">About instakart</h4>
+    <br>
+
+    <p>Welcome to Instakart, your go-to destination for a seamless and delightful online shopping experience. <br>
+        At Instakart, we believe in bringing you more than just products; we're here to offer a lifestyle that combines convenience with top-notch service.</p>
+
+    <h5 class="display-9 text-left">Our Mission</h5>
+    <p><B>Our mission at Instakart is simple:</B> to make your shopping experience enjoyable, hassle-free, and rewarding.
+         We aim to provide a vast array of products while ensuring the highest standards of quality, affordability, and customer satisfaction.</p>
+    
+    <h5 class="display-9 text-left">What Sets Us Apart</h5>
+    
+        <ul>
+        <li><B>Wide Selection:</B> We curate an extensive range of products across various categories, ensuring there's something for everyone.</li>
+
+        <li><B>Quality Assurance:</B> We handpick our products, partnering with trusted suppliers to guarantee quality and authenticity.</li>
+        
+        <li><B>Customer-Centric Approach:</B> Your happiness is our priority. Our dedicated support team is here to assist you at every step, ensuring a seamless shopping journey.</li>
+        
+        <li><B>Secure Transactions:</B> Shop with confidence knowing that your transactions are secure and your privacy is protected.</li>
+    
+    </ul>
+
+    <h5 class="display-9 text-left">Our Commitment</h5>
+    <p>We are committed to fostering a community centered around trust, reliability, and innovation. We continuously strive to improve our platform, introducing new features and enhancements to elevate your shopping experience.</p>
+
+    <h5 class="display-9 text-left">Get in Touch</h5>
+    <p>Have questions, suggestions, or feedback? We'd love to hear from you! Reach out to us through our contact page or connect with us on social media. Your input helps us grow and serve you better.</p>
+    <br>
+
+    <p>Thank you for choosing Instakart. Happy shopping!</p>
+
+</div>
+
+{% endcache %}
+
+
